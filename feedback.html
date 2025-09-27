@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feedback • Procedural Complexity Calculator Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app-body">
+  <div class="app">
+
+    <!-- sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-title">Procedural Complexity Calculator Tool</span>
+      </div>
+
+      <button class="btn btn-teal w-full mt-12">
+        <span class="plus">+</span> New Project
+      </button>
+
+      <nav class="side-nav">
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            ProjectName 1
+            <span class="chev">▾</span>
+          </button>
+        </div>
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            ProjectName 2
+          </button>
+        </div>
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            History
+          </button>
+        </div>
+        <div class="group mt-10">
+          <button class="side-link active">
+            <span class="bullet"></span>
+            Feedback Us
+          </button>
+        </div>
+      </nav>
+
+      <a class="logout" href="logIn.html">
+        <span>Logout</span>
+        <span class="external">↗</span>
+      </a>
+    </aside>
+
+    <!-- main -->
+    <div class="main">
+      <header class="topbar">
+        <div></div>
+        <div class="user">
+          <span class="dot"></span>
+          <span class="name">UserProfile</span>
+        </div>
+      </header>
+
+      <div class="page">
+        <h2 class="page-title">
+          Submit your content by uploading a PDF or entering text manually. Choose one of the options below.
+        </h2>
+
+        <section class="card card-soft">
+          <!-- rate five stars -->
+          <div class="stars" aria-label="Rating (visual only)">
+            <span class="star active" aria-hidden="true">★</span>
+            <span class="star active" aria-hidden="true">★</span>
+            <span class="star active" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+            <span class="star" aria-hidden="true">★</span>
+          </div>
+
+          <!-- form -->
+          <form class="form-vertical" action="#" method="get">
+            <div class="field">
+              <label for="fb-email">Email:</label>
+              <input id="fb-email" type="email" placeholder="Enter email" />
+            </div>
+
+            <div class="field">
+              <label for="fb-msg">Description:</label>
+              <textarea id="fb-msg" placeholder="Please explain details"></textarea>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
