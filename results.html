@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results • Procedural Complexity Calculator Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app-body">
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-title">Procedural Complexity Calculator Tool</span>
+      </div>
+
+      <button class="btn btn-teal w-full mt-12">
+        <span class="plus">+</span> New Project
+      </button>
+
+      <nav class="side-nav">
+        <div class="group">
+          <button class="side-link active">
+            <span class="bullet"></span>
+            ProjectName 1
+            <span class="chev">▾</span>
+          </button>
+          <a class="side-sublink current" href="results.html">Submit Your Input</a>
+          <a class="side-sublink" href="upload.html">History</a>
+        </div>
+
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            ProjectName 2
+          </button>
+        </div>
+
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            Send us Feedback!
+          </button>
+        </div>
+      </nav>
+
+      <a class="logout" href="#"><span>Logout</span><span class="external">↗</span></a>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div></div>
+        <div class="user">
+          <span class="dot"></span>
+          <span class="name">UserProfile</span>
+        </div>
+      </header>
+
+      <div class="page">
+      <section class="card card-soft results-summary">
+  <div class="summary-left">
+    <!-- add image when ready -->
+    <div class="score-placeholder">
+      <span>Score Graphic Here</span>
+    </div>
+
+    <div class="score-readout">
+      <div class="score-title">CIPS SCORE: <strong>2</strong></div>
+      <div class="score-sub">Your CIPS score is low</div>
+    </div>
+  </div>
+
+  <div class="summary-right">
+    <ul class="legend">
+      <li><span class="dot dot-green"></span>Low (0 – 5)</li>
+      <li><span class="dot dot-yellow"></span>Medium (6 –10)</li>
+      <li><span class="dot dot-red"></span>High (&lt;10)</li>
+    </ul>
+    <p class="summary-copy">
+      The complexity score tells you how complex the steps and procedures are to follow and complete the tasks.
+      The complexity for each step is measured based on 5 sub-components.
+    </p>
+    <p class="summary-copy">
+      Click on <a href="#" class="link">‘How the score is calculated?’</a> to learn more.
+    </p>
+    <p class="summary-copy">
+      Based on the score, recommendations will be provided to improve procedures.
+    </p>
+  </div>
+</section>
+
+
+     
+        <section class="card card-soft results-table">
+          <!-- toolbar -->
+          <div class="toolbar">
+            <div class="search">
+              <span class="search-ico">🔍</span>
+              <input type="text" placeholder="Search" />
+            </div>
+
+            <div class="segmented">
+              <button class="seg active">All Steps</button>
+              <button class="seg">High</button>
+              <button class="seg">Medium</button>
+              <button class="seg">Low</button>
+            </div>
+
+            <button class="icon-chip" aria-label="Sort/Filter">⟲</button>
+          </div>
+
+          <!-- table -->
+          <div class="table-wrap">
+            <table class="results">
+              <thead>
+                <tr>
+                  <th>Step<br/>Number</th>
+                  <th>Step</th>
+                  <th>Step-level<br/>Complexity</th>
+                  <th>Ambiguity</th>
+                  <th>Decision</th>
+                  <th>Interdependency</th>
+                  <th>Step<br/>Size</th>
+                  <th>Step<br/>Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="num">1</td>
+                  <td>
+                    <div class="step-main">Ensure each FC purifier is still isolated from the process and regeneration lines.</div>
+                  </td>
+                  <td class="center">2</td>
+                  <td class="center">Ensure</td>
+                  <td class="center">–</td>
+                  <td class="center">–</td>
+                  <td class="center">Multiple<br/>Objects</td>
+                  <td class="center linkish">Note</td>
+                </tr>
+                <tr class="reco-row">
+                  <td></td>
+                  <td colspan="7">
+                    <div class="reco">
+                      <span class="reco-label">Recommendation:</span>
+                      <span class="reco-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru… <span class="link">More</span></span>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="num">2</td>
+                  <td>
+                    <div class="step-main">Visually Check that the “Back-up Venting Fan” is running.</div>
+                  </td>
+                  <td class="center">—</td>
+                  <td class="center">If then</td>
+                  <td class="center">–</td>
+                  <td class="center">–</td>
+                  <td class="center">–</td>
+                  <td class="center linkish">Note</td>
+                </tr>
+                <tr class="reco-row">
+                  <td></td>
+                  <td colspan="7">
+                    <div class="reco">
+                      <span class="reco-label">Recommendation:</span>
+                      <span class="reco-text">Short suggestion copy can live here as well.</span>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

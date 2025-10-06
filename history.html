@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History • Procedural Complexity Calculator Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app-body">
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-title">Procedural Complexity Calculator Tool</span>
+      </div>
+
+      <button class="btn btn-teal w-full mt-12">
+        <span class="plus">+</span> New Project
+      </button>
+
+      <nav class="side-nav">
+        <div class="group">
+          <button class="side-link active">
+            <span class="bullet"></span>
+            ProjectName 1
+            <span class="chev">▾</span>
+          </button>
+          <a class="side-sublink" href="upload.html">Submit Your Input</a>
+          <a class="side-sublink current" href="history.html">History</a>
+        </div>
+
+        <div class="group mt-10">
+          <button class="side-link">
+            <span class="bullet"></span>
+            ProjectName 2
+          </button>
+        </div>
+        
+        <div class="group mt-10">
+        <a href="feedback.html" class="side-link">
+            <span class="bullet"></span>
+            Send us Feedback!
+        </a>
+        </div>
+
+      </nav>
+
+      <a class="logout" href="#">
+        <span>Logout</span>
+        <span class="external">↗</span>
+      </a>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <header class="topbar">
+        <div></div>
+        <div class="user">
+          <span class="dot"></span>
+          <span class="name">UserProfile</span>
+        </div>
+      </header>
+
+      <!-- Page -->
+      <div class="page page-alt">
+        <div class="page-hero">
+          <h1 class="h1">History</h1>
+          <div class="subhead">ProjectName1</div>
+        </div>
+
+        <section class="card card-soft history-card">
+          <div class="table-wrap">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>File Name</th>
+                  <th>CIPS Score</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="date">09/29/2025</span></td>
+                  <td><a class="file-link" href="#">TaskA–v1.pdf</a></td>
+                  <td class="score">2</td>
+                  <td class="actions">
+                    <a href="#" class="chip chip-teal">Download ⬇</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="date">02/26/2025</span></td>
+                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+                  <td class="score">3</td>
+                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
+                </tr>
+                <tr>
+                  <td><span class="date">02/26/2025</span></td>
+                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+                  <td class="score">4</td>
+                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
+                </tr>
+                <tr>
+                  <td><span class="date">02/26/2025</span></td>
+                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+                  <td class="score">4</td>
+                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
+                </tr>
+                <tr>
+                  <td><span class="date">02/08/2025</span></td>
+                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+                  <td class="score">8</td>
+                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
