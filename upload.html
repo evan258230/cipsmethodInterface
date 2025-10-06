@@ -69,62 +69,118 @@
       <div class="page">
         <h2 class="page-title">Submit your content by uploading a PDF or entering text manually. Choose one of the options below.</h2>
 
-        <section class="card card-soft">
-          <div class="radio-tabs">
-            <label class="radio active">
-              <input type="radio" name="mode" checked disabled />
-              <span>Upload a PDF</span>
-            </label>
-            <label class="radio">
-              <input type="radio" name="mode" disabled />
-              <span>Submit text</span>
-            </label>
+       <section class="card card-soft">
+
+
+  <div class="radio-tabs" role="tablist" aria-label="Submission mode">
+    <label class="radio" id="tab-pdf" role="tab" aria-controls="panel-pdf" aria-selected="true">
+      <input type="radio" name="mode" value="pdf" checked />
+      <span>Upload a PDF</span>
+    </label>
+
+    <label class="radio" id="tab-text" role="tab" aria-controls="panel-text" aria-selected="false">
+      <input type="radio" name="mode" value="text" />
+      <span>Submit text</span>
+    </label>
+  </div>
+
+
+  <div id="panel-pdf" class="panel active" role="tabpanel" aria-labelledby="tab-pdf">
+    <div class="dropzone">
+      <div class="dz-inner">
+    
+        <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z" fill="#c9ccd6"/>
+          <path d="M14 2v6h6" fill="#eef0f5"/>
+          <path d="M12 14v5m0-5l-2 2m2-2l2 2" stroke="#9aa3b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+
+        <p class="dz-title">Drag and drop a file here</p>
+        <div class="dz-or">Or</div>
+        <button class="btn btn-dark-sm">Browse File</button>
+      </div>
+
+      <div class="dz-meta">
+        <span>Supported format: PDF</span>
+        <span>Maximum size: 10MB</span>
+      </div>
+    </div>
+
+    <div class="files">
+      <h3 class="files-title">File</h3>
+      <div class="file-row">
+        <div class="file-left">
+          <div class="file-ico" aria-hidden="true">📄</div>
+          <div class="file-meta">
+            <div class="file-name">filename.pdf</div>
+            <div class="file-size">124KB</div>
           </div>
+        </div>
+        <button class="icon-btn" aria-label="Delete">🗑️</button>
+      </div>
+    </div>
 
-          <div class="dropzone">
-            <div class="dz-inner">
-              <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z" fill="#c9ccd6"/>
-                <path d="M14 2v6h6" fill="#eef0f5"/>
-                <path d="M12 14v5m0-5l-2 2m2-2l2 2" stroke="#9aa3b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
+    <div class="form-actions">
+      <button class="btn btn-ghost">Cancel</button>
+      <a href="results.html" class="btn btn-dark">Upload</a>
+    </div>
+  </div>
 
-              <p class="dz-title">Drag and drop a file here</p>
-              <div class="dz-or">Or</div>
-              <button class="btn btn-dark-sm">Browse File</button>
-            </div>
 
-            <div class="dz-meta">
-              <span>Supported format: PDF</span>
-              <span>Maximum size: 10MB</span>
-            </div>
-          </div>
+  <div id="panel-text" class="panel" role="tabpanel" aria-labelledby="tab-text" hidden>
+    <div class="text-dropzone">
+      <textarea class="text-area" placeholder="Enter or paste your steps here"></textarea>
+      <div class="helper">Steps should be numbered, e.g., 1. Step 1 Example, 2. Step 2 Example</div>
+    </div>
 
-          <div class="files">
-            <h3 class="files-title">File</h3>
+    <div class="form-actions">
+      <button class="btn btn-ghost">Cancel</button>
+      <a href="results.html" class="btn btn-dark">Upload</a>
+    </div>
+  </div>
 
-            <div class="file-row">
-              <div class="file-left">
-                <div class="file-ico" aria-hidden="true">📄</div>
-                <div class="file-meta">
-                  <div class="file-name">filename.pdf</div>
-                  <div class="file-size">124KB</div>
-                </div>
-              </div>
-              <button class="icon-btn" aria-label="Delete">
-                🗑️
-              </button>
-            </div>
-          </div>
+</section>
 
-          <div class="actions">
-            <button class="btn btn-ghost">Cancel</button>
-            <a href="results.html" class="btn btn-dark">Upload</a>
-          </div>
-        </section>
       </div>
 
     </div>
   </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pdfTab  = document.querySelector('#tab-pdf');
+  const textTab = document.querySelector('#tab-text');
+  const pdfPanel  = document.querySelector('#panel-pdf');
+  const textPanel = document.querySelector('#panel-text');
+  const radios = document.querySelectorAll('input[name="mode"]');
+
+  function setMode(mode){
+    const isPDF = mode === 'pdf';
+
+
+    pdfPanel.classList.toggle('active', isPDF);
+    textPanel.classList.toggle('active', !isPDF);
+    pdfPanel.hidden  = !isPDF;
+    textPanel.hidden =  isPDF;
+
+
+    pdfTab.setAttribute('aria-selected', String(isPDF));
+    textTab.setAttribute('aria-selected', String(!isPDF));
+  }
+
+  radios.forEach(r => {
+    r.addEventListener('change', (e) => setMode(e.target.value));
+  });
+
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('mode') === 'text') {
+    document.querySelector('input[value="text"]').checked = true;
+    setMode('text');
+  } else {
+    setMode('pdf');
+  }
+});
+</script>
+
 </body>
 </html>

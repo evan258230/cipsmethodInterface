@@ -193,7 +193,7 @@ input:focus{
 .side-nav{ padding: 8px 4px; }
 .group{ display:flex; flex-direction:column; }
 
-/* Make side-link styling apply to both <a> and <button> */
+
 .side-link {
   display:flex;
   align-items:center;
@@ -209,7 +209,7 @@ input:focus{
   cursor:pointer;
 }
 
-/* anchors shouldn’t underline */
+
 .side-link:link,
 .side-link:visited {
   color:#0f172a;
@@ -373,12 +373,18 @@ input:focus{
 .icon-btn:hover{ background:#f1f4fa }
 
 
-.actions{
-  width: 100%;              
+.actions {
   display: flex;
   justify-content: flex-end;  
-  gap: 12px;
-  margin-top: 20px;
+  gap: 12px;                  
+  margin-top: 24px;
+  width: 100%;                
+  box-sizing: border-box;     
+}
+
+.history-table td.actions {
+  width: 160px;
+  text-align: right;
 }
 
 
@@ -564,9 +570,8 @@ textarea:focus{
   background: #f9fafb;
 }
 
-/* ---------- Page variants / headings ---------- */
 .page-alt{
-  background: #e9eef2;            /* light gray backdrop like the screenshot */
+  background: #e9eef2;          
   min-height: calc(100vh - 56px);
 }
 
@@ -590,7 +595,7 @@ textarea:focus{
   margin-bottom: 14px;
 }
 
-/* ---------- History card + table ---------- */
+
 .history-card{
   width: 100%;
   max-width: 1040px;
@@ -642,12 +647,8 @@ textarea:focus{
   width: 120px;
 }
 
-.actions{
-  width: 160px;
-  text-align: right;
-}
 
-/* pill-like download button */
+
 .chip {
   display: inline-flex;
   align-items: center;
@@ -656,10 +657,10 @@ textarea:focus{
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 13px;       /* 🔹 smaller text to fit both */
+  font-size: 13px;   
   text-decoration: none;
   border: 1px solid transparent;
-  line-height: 1;        /* keeps icon aligned */
+  line-height: 1;       
 }
 
 .chip-teal {
@@ -670,6 +671,61 @@ textarea:focus{
 .chip-teal:hover {
   background: #16a197;
 }
+
+
+.panel { display: none; }
+.panel.active { display: block; }
+.panel[hidden] { display: none !important; }
+
+
+.radio[aria-selected="true"] span::before{
+  content:"";
+  display:inline-block;
+  width:10px; height:10px; border-radius:999px;
+  background:#2563eb; margin-right:0;
+}
+
+.text-dropzone{
+  margin-top:12px;
+  border:2px dashed #d6dbe6;
+  border-radius:14px;
+  padding:24px;
+}
+.text-area{
+  width:100%;
+  min-height:260px;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:16px;
+  color:#0f172a;
+  resize:vertical;
+}
+.text-area::placeholder{ color:#98a3b2; }
+.helper{
+  margin-top:10px;
+  color:#7d8698;
+  font-size:14px;
+}
+
+
+.form-actions{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:12px;
+  margin-top:24px;
+  width:100%;
+  box-sizing:border-box;
+}
+
+
+.history-table td.actions{
+  width:160px;
+  text-align:right;
+}
+
+
 
 
 
