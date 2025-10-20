@@ -11,51 +11,28 @@
 </head>
 <body class="app-body">
   <div class="app">
-
-    <!-- sidebar -->
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand">
         <span class="brand-title">Procedural Complexity Calculator Tool</span>
       </div>
 
-      <button class="btn btn-teal w-full mt-12">
-        <span class="plus">+</span> New Project
+      <button id="newProjectBtn" class="btn btn-teal w-full mt-12">
+        + New Project
       </button>
 
-      <nav class="side-nav">
-        <div class="group">
-          <button class="side-link active">
-            <span class="bullet"></span>
-            ProjectName 1
-            <span class="chev">▾</span>
-          </button>
-          <a class="side-sublink current" href="#">Submit Your Input</a>
-          <a class="side-sublink" href="history.html">History</a>
-        </div>
+      <nav class="side-nav" id="projectList">
+    
+      </nav>
 
-        <div class="group mt-10">
-          <button class="side-link">
-            <span class="bullet"></span>
-            ProjectName 2
-          </button>
-        </div>
-
-        <div class="group mt-10">
-        <a href="feedback.html" class="side-link">
-            <span class="bullet"></span>
-            Send us Feedback!
-        </a>
-        </div>
-
-        </nav>
-
+      <a class="side-link mt-10" href="feedback.html">Send us Feedback!</a>
       <a class="logout" href="logIn.html">
         <span>Logout</span>
         <span class="external">↗</span>
       </a>
     </aside>
 
-    <!-- main -->
+  
     <div class="main">
 
       <header class="topbar">
@@ -66,88 +43,89 @@
         </div>
       </header>
 
-      <div class="page">
+    
+      <div id="emptyMainState" class="empty-main-state">
+        <h1>Create a Project to get started</h1>
+      </div>
+
+
+      <div id="uploadSection" class="page" style="display: none;">
         <h2 class="page-title">Submit your content by uploading a PDF or entering text manually. Choose one of the options below.</h2>
 
-       <section class="card card-soft">
+        <section class="card card-soft">
 
+          <div class="radio-tabs" role="tablist" aria-label="Submission mode">
+            <label class="radio" id="tab-pdf" role="tab" aria-controls="panel-pdf" aria-selected="true">
+              <input type="radio" name="mode" value="pdf" checked />
+              <span>Upload a PDF</span>
+            </label>
 
-  <div class="radio-tabs" role="tablist" aria-label="Submission mode">
-    <label class="radio" id="tab-pdf" role="tab" aria-controls="panel-pdf" aria-selected="true">
-      <input type="radio" name="mode" value="pdf" checked />
-      <span>Upload a PDF</span>
-    </label>
+            <label class="radio" id="tab-text" role="tab" aria-controls="panel-text" aria-selected="false">
+              <input type="radio" name="mode" value="text" />
+              <span>Submit text</span>
+            </label>
+          </div>
 
-    <label class="radio" id="tab-text" role="tab" aria-controls="panel-text" aria-selected="false">
-      <input type="radio" name="mode" value="text" />
-      <span>Submit text</span>
-    </label>
-  </div>
+         
+          <div id="panel-pdf" class="panel active" role="tabpanel" aria-labelledby="tab-pdf">
+            <div class="dropzone">
+              <div class="dz-inner">
+                <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z" fill="#c9ccd6"/>
+                  <path d="M14 2v6h6" fill="#eef0f5"/>
+                  <path d="M12 14v5m0-5l-2 2m2-2l2 2" stroke="#9aa3b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
 
+                <p class="dz-title">Drag and drop a file here</p>
+                <div class="dz-or">Or</div>
+                <button id="browseBtn" class="btn btn-dark-sm" type="button">Browse File</button>
+                <input type="file" id="fileInput" accept="application/pdf" hidden />
+              </div>
 
-  <div id="panel-pdf" class="panel active" role="tabpanel" aria-labelledby="tab-pdf">
-    <div class="dropzone">
-  <div class="dz-inner">
-    <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8z" fill="#c9ccd6"/>
-      <path d="M14 2v6h6" fill="#eef0f5"/>
-      <path d="M12 14v5m0-5l-2 2m2-2l2 2" stroke="#9aa3b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </svg>
+              <div class="dz-meta">
+                <span>Supported format: PDF</span>
+                <span>Maximum size: 10MB</span>
+              </div>
+            </div>
 
-    <p class="dz-title">Drag and drop a file here</p>
-    <div class="dz-or">Or</div>
+            <div class="files" id="fileDisplay" style="display: none;">
+              <h3 class="files-title">File</h3>
+              <div class="file-row">
+                <div class="file-left">
+                  <div class="file-ico" aria-hidden="true">📄</div>
+                  <div class="file-meta">
+                    <div class="file-name" id="fileName">filename.pdf</div>
+                    <div class="file-size" id="fileSize">0 KB</div>
+                  </div>
+                </div>
+                <button id="deleteFile" class="icon-btn" aria-label="Delete">🗑️</button>
+              </div>
+            </div>
 
-    <!-- Updated: file input trigger -->
-    <button id="browseBtn" class="btn btn-dark-sm" type="button">Browse File</button>
-    <input type="file" id="fileInput" accept="application/pdf" hidden />
-  </div>
+            <div class="form-actions">
+              <button class="btn btn-ghost">Cancel</button>
+              <a href="results.html" class="btn btn-dark">Upload</a>
+            </div>
+          </div>
 
-  <div class="dz-meta">
-    <span>Supported format: PDF</span>
-    <span>Maximum size: 10MB</span>
-  </div>
-</div>
+          <!-- Submit Text Panel -->
+          <div id="panel-text" class="panel" role="tabpanel" aria-labelledby="tab-text" style="display: none;">
+            <div class="text-dropzone">
+              <textarea class="text-area" placeholder="Enter or paste your steps here"></textarea>
+              <div class="helper">Steps should be numbered, e.g., 1. Step 1 Example, 2. Step 2 Example</div>
+            </div>
 
-<div class="files" id="fileDisplay" style="display: none;">
-  <h3 class="files-title">File</h3>
-  <div class="file-row">
-    <div class="file-left">
-      <div class="file-ico" aria-hidden="true">📄</div>
-      <div class="file-meta">
-        <div class="file-name" id="fileName">filename.pdf</div>
-        <div class="file-size" id="fileSize">0 KB</div>
-      </div>
-    </div>
-    <button id="deleteFile" class="icon-btn" aria-label="Delete">🗑️</button>
-  </div>
-</div>
+            <div class="form-actions">
+              <button class="btn btn-ghost">Cancel</button>
+              <a href="results.html" class="btn btn-dark">Upload</a>
+            </div>
+          </div>
 
+        </section>
+      </div> 
+    </div> 
+  </div> 
 
-    <div class="form-actions">
-      <button class="btn btn-ghost">Cancel</button>
-      <a href="results.html" class="btn btn-dark">Upload</a>
-    </div>
-  </div>
-
-
-  <div id="panel-text" class="panel" role="tabpanel" aria-labelledby="tab-text" hidden>
-    <div class="text-dropzone">
-      <textarea class="text-area" placeholder="Enter or paste your steps here"></textarea>
-      <div class="helper">Steps should be numbered, e.g., 1. Step 1 Example, 2. Step 2 Example</div>
-    </div>
-
-    <div class="form-actions">
-      <button class="btn btn-ghost">Cancel</button>
-      <a href="results.html" class="btn btn-dark">Upload</a>
-    </div>
-  </div>
-
-</section>
-
-      </div>
-
-    </div>
-  </div>
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

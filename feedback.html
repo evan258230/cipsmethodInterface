@@ -13,44 +13,22 @@
   <div class="app">
 
     <!-- sidebar -->
-    <aside class="sidebar">
-      <div class="brand">
-        <span class="brand-title">Procedural Complexity Calculator Tool</span>
-      </div>
+       <aside class="sidebar">
+  <div class="brand">
+    <span class="brand-title">Procedural Complexity Calculator Tool</span>
+  </div>
 
-      <button class="btn btn-teal w-full mt-12">
-        <span class="plus">+</span> New Project
-      </button>
+  <button id="newProjectBtn" class="btn btn-teal w-full mt-12">+ New Project</button>
 
-      <nav class="side-nav">
-        <div class="group mt-10">
-          <a href="upload.html">
-          <button class="side-link">
-            <span class="bullet"></span>
-            ProjectName 1
-            <span class="chev">▾</span>
-          </button>
-          </a>
-        </div>
-        <div class="group mt-10">
-          <button class="side-link">
-            <span class="bullet"></span>
-            ProjectName 2
-          </button>
-        </div>
-        <div class="group mt-10">
-          <button class="side-link active">
-            <span class="bullet"></span>
-            Send us Feedback!
-          </button>
-        </div>
-      </nav>
+  <nav class="side-nav" id="projectList"></nav>
 
-      <a class="logout" href="logIn.html">
-        <span>Logout</span>
-        <span class="external">↗</span>
-      </a>
-    </aside>
+  <a class="side-link mt-10" href="feedback.html">Send us Feedback!</a>
+  <a class="logout" href="logIn.html">
+    <span>Logout</span>
+    <span class="external">↗</span>
+  </a>
+</aside>
+
 
     <!-- main -->
     <div class="main">
