@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Procedural Complexity Calculator Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="upload.css" />
+  <link rel="stylesheet" href="upload.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,15 +20,23 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <button id="newProjectBtn" class="new-project-btn">
+    <button class="new-project-btn">
       <span class="plus-icon">+</span> New Project
     </button>
 
-    <div id="projectList" class="projects-list"></div>
+    <div class="projects-list">
+      <div class="project-container">
+        <span class="project-name">Project Name 1</span>
+        <span class="project-chevron">⌄</span>
+      </div>
+
+      <div class="side-sublink active">Upload New File</div>
+      <div class="side-sublink inactive">History</div>
+    </div>
 
     <div class="sidebar-bottom">
       <a href="#" class="feedback-link">Feedback Us</a>
-      <a href="#" class="logout-link">Logout</a>
+      <a href="#" class="logout-link">Logout ↪</a>
     </div>
   </aside>
 
@@ -41,48 +47,37 @@
     </p>
 
     <div class="main-card">
-      <div class="upload-section">
-        <!-- Radio options -->
-        <div class="upload-toggle">
-          <label class="radio-option">
-            <input type="radio" name="uploadType" value="pdf" checked>
-            <span>Upload a PDF</span>
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="uploadType" value="text">
-            <span>Submit text</span>
-          </label>
+      <!-- Upload type selection -->
+      <div class="upload-toggle-container">
+        <div class="upload-option selected">
+          <div class="radio-outer"><div class="radio-inner"></div></div>
+          <span class="upload-text">Upload a PDF</span>
         </div>
-
-        <!-- Dropzone -->
-        <div class="dropzone">
-          <div class="drop-icon">📄</div>
-          <p class="drop-text">Drag and drop a file here</p>
-          <p class="drop-subtext">Or</p>
-          <button class="browse-btn" type="button">Browse File</button>
-          <input type="file" id="fileInput" accept="application/pdf" hidden>
-          <div class="drop-meta">
-            <span>Supported format: PDF</span>
-            <span>Maximum size: 10MB</span>
-          </div>
+        <div class="upload-option">
+          <div class="radio-outer"></div>
+          <span class="upload-text">Submit text</span>
         </div>
+      </div>
 
-        <!-- File preview -->
-        <div class="file-display" id="fileDisplay" style="display:none;">
-          <h3 class="file-label">File</h3>
-          <div class="file-box">
-            <div class="file-info">
-              <div class="file-icon">📄</div>
-              <div>
-                <div class="file-name" id="fileName">example.pdf</div>
-                <div class="file-size" id="fileSize">0 KB</div>
-              </div>
-            </div>
-            <button id="deleteFile" class="delete-btn" aria-label="Remove file">✕</button>
-          </div>
-        </div>
+      <!-- Dropzone -->
+<div class="dropzone">
+  <div class="drop-icon">📄</div>
+  <p class="drop-text">Drag and drop a file here</p>
+  <p class="drop-subtext">Or</p>
+  <button class="browse-btn">Browse File</button>
+</div>
 
-        <!-- Upload buttons -->
+<!-- Moved below container -->
+<div class="drop-meta">
+  <span>Supported format: PDF</span>
+  <span>Maximum size: 10MB</span>
+</div>
+
+
+      <!-- File Upload Section -->
+      <div class="file-section">
+        <label for="fileInput" class="file-label">File</label>
+        <input type="text" id="fileInput" class="file-input" placeholder="">
         <div class="upload-actions">
           <button class="cancel-btn" type="button">Cancel</button>
           <button class="upload-btn" type="button">Upload</button>
@@ -90,7 +85,5 @@
       </div>
     </div>
   </main>
-
-  <script src="main.js"></script>
 </body>
 </html>
