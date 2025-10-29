@@ -1,78 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Feedback • Procedural Complexity Calculator Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - Procedural Complexity Calculator</title>
+  <link rel="stylesheet" href="feedback.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
 </head>
-<body class="app-body">
-  <div class="app">
 
-    <!-- sidebar -->
-       <aside class="sidebar">
-  <div class="brand">
-    <span class="brand-title">Procedural Complexity Calculator Tool</span>
-  </div>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-title">Procedural Complexity Calculator Tool</div>
+    <div class="user-profile">
+      <div class="user-avatar"></div>
+      <div class="user-name">UserProfile</div>
+    </div>
+  </header>
 
-  <button id="newProjectBtn" class="btn btn-teal w-full mt-12">+ New Project</button>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button class="new-project-btn">
+      <span class="plus-icon">+</span> New Project
+    </button>
 
-  <nav class="side-nav" id="projectList"></nav>
-
-  <a class="side-link mt-10" href="feedback.html">Send us Feedback!</a>
-  <a class="logout" href="logIn.html">
-    <span>Logout</span>
-    <span class="external">↗</span>
-  </a>
-</aside>
-
-
-    <!-- main -->
-    <div class="main">
-      <header class="topbar">
-        <div></div>
-        <div class="user">
-          <span class="dot"></span>
-          <span class="name">UserProfile</span>
-        </div>
-      </header>
-
-      <div class="page">
-        <h2 class="page-title">
-          Submit your content by uploading a PDF or entering text manually. Choose one of the options below.
-        </h2>
-
-        <section class="card card-soft">
-          <!-- rate five stars -->
-          <div class="stars" aria-label="Rating (visual only)">
-            <span class="star active" aria-hidden="true">★</span>
-            <span class="star active" aria-hidden="true">★</span>
-            <span class="star active" aria-hidden="true">★</span>
-            <span class="star" aria-hidden="true">★</span>
-            <span class="star" aria-hidden="true">★</span>
-          </div>
-
-          <!-- form -->
-          <form class="form-vertical" action="#" method="get">
-            <div class="field">
-              <label for="fb-email">Email:</label>
-              <input id="fb-email" type="email" placeholder="Enter email" />
-            </div>
-
-            <div class="field">
-              <label for="fb-msg">Description:</label>
-              <textarea id="fb-msg" placeholder="Please explain details"></textarea>
-            </div>
-          </form>
-        </section>
+    <div class="projects-list">
+      <div class="project-container">
+        <span class="project-name">Project Name 1</span>
+        <span class="project-chevron">⌄</span>
       </div>
+      <div class="side-sublink inactive">Upload New File</div>
+      <div class="side-sublink inactive">History</div>
+
+      <div class="project-container">
+        <span class="project-name">Project Name 2</span>
+        <span class="project-chevron">⌄</span>
+      </div>
+      <div class="side-sublink inactive">Upload New File</div>
+      <div class="side-sublink inactive">History</div>
     </div>
 
-  </div>
-  <script src="main.js"></script>
+    <div class="sidebar-bottom">
+      <a href="#" class="feedback-link active">Feedback Us</a>
+      <a href="#" class="logout-link">Logout ↪</a>
+    </div>
+  </aside>
 
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1 class="page-heading">We value your opinion and would love to hear from you.</h1>
+
+    <div class="main-card">
+      <div class="rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+
+      <form class="feedback-form">
+        <label for="email" class="feedback-label">Email (Optional):</label>
+        <input type="email" id="email" class="feedback-input" placeholder="Enter email">
+
+        <label for="feedback" class="feedback-label">Feedback:</label>
+        <textarea id="feedback" class="feedback-textarea" placeholder="Please fill in your answer"></textarea>
+
+        <div class="feedback-actions">
+          <button class="cancel-btn" type="button">Cancel</button>
+          <button class="submit-btn" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Star rating interaction
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('active', i <= index);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
