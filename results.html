@@ -1,167 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Results • Procedural Complexity Calculator Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results - Procedural Complexity Calculator</title>
+  <link rel="stylesheet" href="results.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
 </head>
-<body class="app-body">
-  <div class="app">
 
-   <aside class="sidebar">
-  <div class="brand">
-    <span class="brand-title">Procedural Complexity Calculator Tool</span>
-  </div>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-title">Procedural Complexity Calculator Tool</div>
+    <div class="user-profile">
+      <div class="user-avatar"></div>
+      <div class="user-name">UserProfile</div>
+    </div>
+  </header>
 
-  <button id="newProjectBtn" class="btn btn-teal w-full mt-12">+ New Project</button>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button class="new-project-btn"><span class="plus-icon">+</span> New Project</button>
 
-  <nav class="side-nav" id="projectList"></nav>
+    <div class="projects-list">
+      <div class="project-container">
+        <span class="project-name">Project Name 1</span>
+        <span class="project-chevron">⌄</span>
+      </div>
+      <div class="side-sublink">Submit Your Input</div>
+      <div class="side-sublink">History</div>
 
-  <a class="side-link mt-10" href="feedback.html">Send us Feedback!</a>
-  <a class="logout" href="logIn.html">
-    <span>Logout</span>
-    <span class="external">↗</span>
-  </a>
-</aside>
+      <div class="project-container">
+        <span class="project-name">Project Name 2</span>
+        <span class="project-chevron">⌄</span>
+      </div>
+      <div class="side-sublink">Submit Your Input</div>
+      <div class="side-sublink">History</div>
+    </div>
 
+    <div class="sidebar-bottom">
+      <a href="#" class="feedback-link">Feedback Us</a>
+      <a href="#" class="logout-link">Logout ↪</a>
+    </div>
+  </aside>
 
-
-    <div class="main">
-      <header class="topbar">
-        <div></div>
-        <div class="user">
-          <span class="dot"></span>
-          <span class="name">UserProfile</span>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="score-section">
+      <div class="gauge-box">
+        <div class="gauge">
+          <div class="needle"></div>
+          <div class="gauge-arc"></div>
         </div>
-      </header>
+        <div class="score-info">
+          <h2>CIPS SCORE: 2</h2>
+          <p class="score-sub">Your CIPS score is low</p>
+        </div>
+      </div>
 
-      <div class="page">
-      <section class="card card-soft results-summary">
-  <div class="summary-left">
-    <!-- add image when ready -->
-    <div class="score-placeholder">
-      <span>Score Graphic Here</span>
-    </div>
+      <div class="score-description">
+        <p>The complexity score tells you how complex the steps and procedures are to follow and complete the tasks. The complexity for each step is measured based on 5 sub-components.</p>
+        <p class="score-link">Click on <span class="highlight">'How the score is calculated?'</span> to learn more.</p>
+        <p>Based on the score, recommendations will be provided to improve procedures.</p>
 
-    <div class="score-readout">
-      <div class="score-title">CIPS SCORE: <strong>2</strong></div>
-      <div class="score-sub">Your CIPS score is low</div>
-    </div>
-  </div>
-
-  <div class="summary-right">
-    <ul class="legend">
-      <li><span class="dot dot-green"></span>Low (0 – 5)</li>
-      <li><span class="dot dot-yellow"></span>Medium (6 –10)</li>
-      <li><span class="dot dot-red"></span>High (&lt;10)</li>
-    </ul>
-    <p class="summary-copy">
-      The complexity score tells you how complex the steps and procedures are to follow and complete the tasks.
-      The complexity for each step is measured based on 5 sub-components.
-    </p>
-    <p class="summary-copy">
-      Click on <a href="#" class="link">‘How the score is calculated?’</a> to learn more.
-    </p>
-    <p class="summary-copy">
-      Based on the score, recommendations will be provided to improve procedures.
-    </p>
-  </div>
-</section>
-
-
-     
-        <section class="card card-soft results-table">
-  
-          <div class="toolbar">
-            <div class="search">
-              <span class="search-ico">🔍</span>
-              <input type="text" placeholder="Search" />
-            </div>
-
-            <div class="segmented">
-              <button class="seg active">All Steps</button>
-              <button class="seg">High</button>
-              <button class="seg">Medium</button>
-              <button class="seg">Low</button>
-            </div>
-
-            <button class="icon-chip" aria-label="Sort/Filter">⟲</button>
-          </div>
-
- 
-          <div class="table-wrap">
-            <table class="results">
-              <thead>
-                <tr>
-                  <th>Step<br/>Number</th>
-                  <th>Step</th>
-                  <th>Step-level<br/>Complexity</th>
-                  <th>Ambiguity</th>
-                  <th>Decision</th>
-                  <th>Interdependency</th>
-                  <th>Step<br/>Size</th>
-                  <th>Step<br/>Info</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td class="num">1</td>
-                  <td>
-                    <div class="step-main">Ensure each FC purifier is still isolated from the process and regeneration lines.</div>
-                  </td>
-                  <td class="center">2</td>
-                  <td class="center">Ensure</td>
-                  <td class="center">–</td>
-                  <td class="center">–</td>
-                  <td class="center">Multiple<br/>Objects</td>
-                  <td class="center linkish">Note</td>
-                </tr>
-                <tr class="reco-row">
-                  <td></td>
-                  <td colspan="7">
-                    <div class="reco">
-                      <span class="reco-label">Recommendation:</span>
-                      <span class="reco-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru… <span class="link">More</span></span>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="num">2</td>
-                  <td>
-                    <div class="step-main">Visually Check that the “Back-up Venting Fan” is running.</div>
-                  </td>
-                  <td class="center">—</td>
-                  <td class="center">If then</td>
-                  <td class="center">–</td>
-                  <td class="center">–</td>
-                  <td class="center">–</td>
-                  <td class="center linkish">Note</td>
-                </tr>
-                <tr class="reco-row">
-                  <td></td>
-                  <td colspan="7">
-                    <div class="reco">
-                      <span class="reco-label">Recommendation:</span>
-                      <span class="reco-text">Short suggestion copy can live here as well.</span>
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <div class="legend">
+          <span class="dot green"></span> Low (0–5)
+          <span class="dot yellow"></span> Medium (6–10)
+          <span class="dot red"></span> High (&lt;10)
+        </div>
       </div>
     </div>
 
-  </div>
-<script src="main.js"></script>
+    <div class="filter-section">
+      <input type="text" class="search-bar" placeholder="Search">
+      <div class="filter-buttons">
+        <button class="filter-btn active">All Steps</button>
+        <button class="filter-btn">High</button>
+        <button class="filter-btn">Medium</button>
+        <button class="filter-btn">Low</button>
+        <button class="filter-icon">⤩</button>
+      </div>
+    </div>
 
+    <div class="table-section">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Step Number</th>
+            <th>Step</th>
+            <th>Step-level Complexity</th>
+            <th>Ambiguity</th>
+            <th>Decision</th>
+            <th>Interdependency</th>
+            <th>Step Size</th>
+            <th>Step Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Ensure each FC purifier is still isolated from the process and regeneration lines.</td>
+            <td>2</td>
+            <td>Ensure</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Multiple Objects</td>
+            <td>Note</td>
+          </tr>
+          <tr class="recommendation-row">
+            <td colspan="8">
+              <span class="rec-title">Recommendation:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+              <a href="#" class="more-link">More</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Visually check that the “Back-up Venting Fan” is running.</td>
+            <td>Step-level Complexity</td>
+            <td>Ambiguity</td>
+            <td>If then</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Note</td>
+          </tr>
+          <tr class="recommendation-row">
+            <td colspan="8">
+              <span class="rec-title">Recommendation:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+              <a href="#" class="more-link">More</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
 </html>

@@ -20,23 +20,25 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <button class="new-project-btn">
-      <span class="plus-icon">+</span> New Project
-    </button>
+ <button id="newProjectBtn" class="new-project-btn">
+  <span class="plus-icon">+</span> New Project
+</button>
 
-    <div class="projects-list">
-      <div class="project-container">
+<div id="projectList" class="projects-list">
+
+      <!-- <div class="project-container">
         <span class="project-name">Project Name 1</span>
         <span class="project-chevron">⌄</span>
       </div>
 
       <div class="side-sublink active">Upload New File</div>
       <div class="side-sublink inactive">History</div>
-    </div>
+    </div> -->
+  </div>
 
     <div class="sidebar-bottom">
-      <a href="#" class="feedback-link">Feedback Us</a>
-      <a href="#" class="logout-link">Logout ↪</a>
+      <a href="feedback.html" class="feedback-link">Send Us Feedback!</a>
+      <a href="logIn.html" class="logout-link">Logout ↪</a>
     </div>
   </aside>
 
@@ -65,6 +67,7 @@
   <p class="drop-text">Drag and drop a file here</p>
   <p class="drop-subtext">Or</p>
   <button class="browse-btn">Browse File</button>
+  <input type="file" id="hiddenFileInput" accept=".pdf,application/pdf" style="display: none;">
 </div>
 
 <!-- Moved below container -->
@@ -77,7 +80,7 @@
       <!-- File Upload Section -->
       <div class="file-section">
         <label for="fileInput" class="file-label">File</label>
-        <input type="text" id="fileInput" class="file-input" placeholder="">
+        <input type="text" id="fileInput" class="file-input" placeholder="No file selected" readonly>
         <div class="upload-actions">
           <button class="cancel-btn" type="button">Cancel</button>
           <button class="upload-btn" type="button">Upload</button>
@@ -85,5 +88,8 @@
       </div>
     </div>
   </main>
+
+
+<script src="main.js" defer></script>
 </body>
 </html>

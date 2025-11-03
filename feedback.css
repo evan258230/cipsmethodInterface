@@ -80,6 +80,7 @@ html, body {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
+  margin-bottom: 28px;
 }
 
 .plus-icon {
