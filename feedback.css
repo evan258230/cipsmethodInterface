@@ -171,14 +171,14 @@ html, body {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 18px;
-  color: #6B7280; /* lighter gray */
+  color: #6B7280;
   margin-top: 48px;
-  margin-bottom: 36px; /* slightly increased */
+  margin-bottom: 36px; 
 }
 
 /* --- Card --- */
 .main-card {
-  width: 980px; /* slightly wider */
+  width: 980px; 
   border: 2px solid #E6E6F1;
   border-radius: 32px;
   padding: 60px 70px;
@@ -210,7 +210,7 @@ html, body {
 .feedback-form {
   display: flex;
   flex-direction: column;
-  gap: 30px; /* more spacing between inputs */
+  gap: 30px;
 }
 
 .feedback-label {
