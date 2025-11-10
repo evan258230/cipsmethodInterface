@@ -1,105 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>History • Procedural Complexity Calculator Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Procedural Complexity Calculator Tool — History</title>
+
+  <!-- Shared styles for header + sidebar -->
+  <link rel="stylesheet" href="upload.css" />
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="history.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
 </head>
-<body class="app-body">
-  <div class="app">
 
-    <!-- Sidebar -->
+<body>
+
+  <!-- Header (copied from upload.html) -->
+  <header class="header">
+    <div class="header-title">Procedural Complexity Calculator Tool</div>
+    <div class="user-profile">
+      <div class="user-avatar"></div>
+      <div class="user-name">UserProfile</div>
+    </div>
+  </header>
+  <!-- Page layout: sidebar + main wrapper -->
+  <div class="content-wrapper">
+    <!-- Sidebar (copied from upload.html) -->
     <aside class="sidebar">
-  <div class="brand">
-    <span class="brand-title">Procedural Complexity Calculator Tool</span>
-  </div>
+      <button id="newProjectBtn" class="new-project-btn">
+        <span class="plus-icon">+</span> New Project
+      </button>
 
-  <button id="newProjectBtn" class="btn btn-teal w-full mt-12">+ New Project</button>
+      <div id="projectList" class="projects-list">
+        <!-- main.js will render your projects/groups here to keep parity with upload.html -->
+      </div>
 
-  <nav class="side-nav" id="projectList"></nav>
+      <div class="sidebar-bottom">
+        <a href="feedback.html" class="feedback-link">Send Us Feedback!</a>
+        <a href="logIn.html" class="logout-link">Logout ↪</a>
+      </div>
+    </aside>
 
-  <a class="side-link mt-10" href="feedback.html">Send us Feedback!</a>
-  <a class="logout" href="logIn.html">
-    <span>Logout</span>
-    <span class="external">↗</span>
-  </a>
-</aside>
+    <!-- Main content (different from upload.html) -->
+    <main class="main-content">
+      <div class="history-container">
+        <h1 class="history-title">History</h1>
+        <h3 class="history-project-label">ProjectName1</h3>
 
-
-    <!-- Main -->
-    <div class="main">
-      <header class="topbar">
-        <div></div>
-        <div class="user">
-          <span class="dot"></span>
-          <span class="name">UserProfile</span>
-        </div>
-      </header>
-
-      <!-- Page -->
-      <div class="page page-alt">
-        <div class="page-hero">
-          <h1 class="h1">History</h1>
-          <div class="subhead">ProjectName1</div>
-        </div>
-
-        <section class="card card-soft history-card">
-          <div class="table-wrap">
-            <table class="history-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>File Name</th>
-                  <th>CIPS Score</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="date">09/29/2025</span></td>
-                  <td><a class="file-link" href="#">TaskA–v1.pdf</a></td>
-                  <td class="score">2</td>
-                  <td class="actions">
-                    <a href="#" class="chip chip-teal">Download ⬇</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td><span class="date">02/26/2025</span></td>
-                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-                  <td class="score">3</td>
-                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
-                </tr>
-                <tr>
-                  <td><span class="date">02/26/2025</span></td>
-                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-                  <td class="score">4</td>
-                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
-                </tr>
-                <tr>
-                  <td><span class="date">02/26/2025</span></td>
-                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-                  <td class="score">4</td>
-                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
-                </tr>
-                <tr>
-                  <td><span class="date">02/08/2025</span></td>
-                  <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-                  <td class="score">8</td>
-                  <td class="actions"><a href="#" class="chip chip-teal">Download ⬇</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <section class="history-card">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>File Name</th>
+            <th>CIPS Score</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="date">09/29/2025</span></td>
+            <td><a class="file-link" href="#">TaskA-v1.pdf</a></td>
+            <td><span class="score">2</span></td>
+            <td><a class="download-btn" href="#" aria-label="Download TaskA-v1.pdf">Download ⬇</a></td>
+          </tr>
+          <tr>
+            <td><span class="date">02/26/2025</span></td>
+            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+            <td><span class="score">3</span></td>
+            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
+          </tr>
+          <tr>
+            <td><span class="date">02/26/2025</span></td>
+            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+            <td><span class="score">4</span></td>
+            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
+          </tr>
+          <tr>
+            <td><span class="date">02/26/2025</span></td>
+            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+            <td><span class="score">4</span></td>
+            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
+          </tr>
+          <tr>
+            <td><span class="date">02/08/2025</span></td>
+            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
+            <td><span class="score">8</span></td>
+            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
+          </tr>
+        </tbody>
+      </table>
         </section>
       </div>
-    </div>
+    </main>
 
-  </div>
-  <script src="main.js"></script>
+  </div> <!-- .content-wrapper -->
+
+  <script src="main.js" defer></script>
+  <script>
+  // Wait for the sidebar and groups to be rendered by main.js
+  window.addEventListener("DOMContentLoaded", () => {
+    const projectList = document.querySelector('#projectList');
+    if (!projectList) return;
+
+    // Get the first (or currently active) project group
+    const firstGroup = projectList.querySelector('.project-group');
+    if (!firstGroup) return;
+
+    // Ensure the group is open so the sublinks are visible
+    firstGroup.classList.add('open');
+    const sublinks = firstGroup.querySelector('.project-sublinks');
+    if (sublinks) sublinks.style.display = 'flex';
+
+    // Find the "History" link
+    const historyLink = Array.from(sublinks.querySelectorAll('.side-sublink'))
+      .find(link => link.textContent.trim() === 'History');
+      
+    if (!historyLink) return;
+
+    // Highlight it
+    sublinks.querySelectorAll('.side-sublink').forEach(link => {
+      link.classList.remove('active');
+      link.classList.add('inactive');
+    });
+
+    historyLink.classList.remove('inactive');
+    historyLink.classList.add('active');
+  });
+</script>
 
 </body>
 </html>

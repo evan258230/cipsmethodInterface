@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <!-- Header -->
+
+  <!-- Header (copied from upload.html) -->
   <header class="header">
     <div class="header-title">Procedural Complexity Calculator Tool</div>
     <div class="user-profile">
@@ -18,31 +19,19 @@
     </div>
   </header>
 
-  <!-- Sidebar -->
+  <!-- Sidebar (copied from upload.html) -->
   <aside class="sidebar">
-    <button class="new-project-btn">
+    <button id="newProjectBtn" class="new-project-btn">
       <span class="plus-icon">+</span> New Project
     </button>
 
-    <div class="projects-list">
-      <div class="project-container">
-        <span class="project-name">Project Name 1</span>
-        <span class="project-chevron">⌄</span>
-      </div>
-      <div class="side-sublink inactive">Upload New File</div>
-      <div class="side-sublink inactive">History</div>
-
-      <div class="project-container">
-        <span class="project-name">Project Name 2</span>
-        <span class="project-chevron">⌄</span>
-      </div>
-      <div class="side-sublink inactive">Upload New File</div>
-      <div class="side-sublink inactive">History</div>
+    <div id="projectList" class="projects-list">
+      <!-- main.js will render your projects/groups here to keep parity with upload.html -->
     </div>
 
     <div class="sidebar-bottom">
-      <a href="#" class="feedback-link active">Feedback Us</a>
-      <a href="#" class="logout-link">Logout ↪</a>
+      <a href="feedback.html" class="feedback-link">Send Us Feedback!</a>
+      <a href="logIn.html" class="logout-link">Logout ↪</a>
     </div>
   </aside>
 
@@ -74,6 +63,9 @@
     </div>
   </main>
 
+</main>
+
+  <script src="main.js" defer></script>
   <script>
     // Star rating interaction
     const stars = document.querySelectorAll('.star');

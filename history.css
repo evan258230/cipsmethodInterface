@@ -1,0 +1,119 @@
+.main-content {
+  padding: 28px 32px 48px;
+  /* keep inner spacing; outer background provided by .content-wrapper */
+}
+
+.history-title {
+  font-family: "DM Sans", "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  color: #223;
+  margin: 8px 0 6px 0;
+}
+
+.history-project-label {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #3b5ea0;
+  margin: 0 0 18px 0;
+}
+
+.history-card {
+  background: #ffffff;
+  border: 1px solid #d9dde4;
+  border-radius: 12px;
+  padding: 10px 0;
+  box-shadow: 0 1px 0 rgba(16, 24, 40, 0.02);
+  max-width: 980px;
+  margin: 0 auto; /* center horizontally */
+}
+
+/* center the content area vertically a bit and contain the card */
+.history-title {
+  margin-top: 18px;
+}
+
+.history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 24px 0 60px 0;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.history-table thead th {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #5a6475;
+  text-align: left;
+  padding: 14px 22px;
+  border-bottom: 1px solid #eceff3;
+}
+
+.history-table tbody td {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 15px;
+  color: #0f1b40;
+  padding: 16px 22px;
+  border-bottom: 1px solid #f0f2f6;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.date {
+  font-weight: 600;
+  color: #1f2a5a;
+  letter-spacing: 0.2px;
+}
+
+.file-link {
+  color: #2b52a0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
+
+.score {
+  font-weight: 700;
+  color: #1f2a5a;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #3b8c8a;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.02s ease-in, opacity 0.15s ease-in-out;
+}
+
+.download-btn:hover {
+  opacity: 0.92;
+}
+
+.download-btn:active {
+  transform: translateY(1px);
+}
+
+/* make last column compact like the Figma pill button spacing */
+.history-table td:last-child,
+.history-table th:last-child {
+  width: 160px;
+}

@@ -54,8 +54,8 @@ html, body {
   position: absolute;
   top: 70px;
   left: 0;
+  bottom: 0; /* stretch to bottom of viewport */
   width: 212px;
-  height: 1047px;
   background: #FEFEFE;
   border-right: 0.5px solid #EDEDED;
   box-shadow: 4px 0 40px #EDEDED;
@@ -392,6 +392,3 @@ cursor: pointer;
   width: 100%;
   margin-top: -10px;
 }
-
-
-
