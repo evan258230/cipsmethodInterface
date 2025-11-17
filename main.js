@@ -166,13 +166,15 @@ function createProjectGroup(projectName, openByDefault, idx) {
   sublinks.style.flexDirection = 'column';
 
   const uploadLink = document.createElement('a');
-  uploadLink.href = 'upload.html';
-  uploadLink.className = 'side-sublink active';
+  uploadLink.href = `upload.html?idx=${idx}`;
+  // Default to inactive so only the actual currently-open project's tab appears selected
+  uploadLink.className = 'side-sublink inactive';
   uploadLink.textContent = 'Upload New File';
   uploadLink.addEventListener('click', (e) => {
     e.preventDefault();
     setActiveSublink(sublinks, uploadLink);
-    window.location.href = 'upload.html';
+    // Navigate to upload page for this project index
+    window.location.href = `upload.html?idx=${idx}`;
   });
 
 const historyLink = document.createElement('a');

@@ -106,5 +106,43 @@
 
 
 <script src="main.js" defer></script>
+<script>
+  // Open the correct project group and mark Upload active when loaded with ?idx=
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const idxParam = params.get('idx');
+    const projectList = document.querySelector('#projectList');
+    if (!projectList) return;
+    const groups = Array.from(projectList.querySelectorAll('.project-group'));
+    if (!groups.length) return;
+    let target = null;
+    if (!Number.isNaN(parseInt(idxParam, 10))) {
+      const i = parseInt(idxParam, 10);
+      target = groups[i] || null;
+    }
+    if (!target) target = groups[0];
+    if (target) {
+      // open the group
+      target.classList.add('open');
+      const sublinks = target.querySelector('.project-sublinks');
+      if (sublinks) {
+        sublinks.style.display = 'flex';
+        // mark Upload New File as active
+        const uploadLink = Array.from(sublinks.querySelectorAll('.side-sublink'))
+          .find(link => link.textContent.trim().toLowerCase().includes('upload'));
+        if (uploadLink) {
+          sublinks.querySelectorAll('.side-sublink').forEach(link => {
+            link.classList.remove('active');
+            link.classList.add('inactive');
+          });
+          uploadLink.classList.remove('inactive');
+          uploadLink.classList.add('active');
+        }
+      }
+      // scroll into view for visibility
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>
 </body>
 </html>
