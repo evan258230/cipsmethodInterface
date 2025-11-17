@@ -45,7 +45,7 @@
     <main class="main-content">
       <div class="history-container">
         <h1 class="history-title">History</h1>
-        <h3 class="history-project-label">ProjectName1</h3>
+        <h3 id="historyProjectLabel" class="history-project-label">ProjectName1</h3>
 
         <section class="history-card">
       <table class="history-table">
@@ -98,36 +98,64 @@
 
   <script src="main.js" defer></script>
   <script>
-  // Wait for the sidebar and groups to be rendered by main.js
-  window.addEventListener("DOMContentLoaded", () => {
-    const projectList = document.querySelector('#projectList');
-    if (!projectList) return;
+    // Wait for DOM and then set the project name based on the query param
+    window.addEventListener('DOMContentLoaded', () => {
+      // If a project index is provided in the query string, use it
+      const params = new URLSearchParams(window.location.search);
+      const idxParam = params.get('idx');
+      const labelEl = document.getElementById('historyProjectLabel');
+      try {
+        const raw = localStorage.getItem('cipsmethod-projects');
+        const projects = raw ? JSON.parse(raw) : [];
+        let idx = parseInt(idxParam, 10);
+        if (Number.isNaN(idx) || idx < 0 || idx >= projects.length) {
+          // fallback: if invalid, try to find an active/open group rendered by main.js
+          const projectList = document.querySelector('#projectList');
+          const firstGroup = projectList ? projectList.querySelector('.project-group') : null;
+          if (firstGroup) {
+            const nameEl = firstGroup.querySelector('.project-name');
+            if (nameEl) labelEl.textContent = nameEl.textContent || 'Project';
+          }
+        } else {
+          // Valid index — set label from storage
+          labelEl.textContent = projects[idx] || 'Project';
+        }
+      } catch (e) {
+        // ignore and keep default
+      }
 
-    // Get the first (or currently active) project group
-    const firstGroup = projectList.querySelector('.project-group');
-    if (!firstGroup) return;
-
-    // Ensure the group is open so the sublinks are visible
-    firstGroup.classList.add('open');
-    const sublinks = firstGroup.querySelector('.project-sublinks');
-    if (sublinks) sublinks.style.display = 'flex';
-
-    // Find the "History" link
-    const historyLink = Array.from(sublinks.querySelectorAll('.side-sublink'))
-      .find(link => link.textContent.trim() === 'History');
-      
-    if (!historyLink) return;
-
-    // Highlight it
-    sublinks.querySelectorAll('.side-sublink').forEach(link => {
-      link.classList.remove('active');
-      link.classList.add('inactive');
+      // Also, if the sidebar was rendered, open the matching project group automatically
+      const projectList = document.querySelector('#projectList');
+      if (projectList) {
+        const groups = Array.from(projectList.querySelectorAll('.project-group'));
+        let targetGroup = null;
+        if (!Number.isNaN(parseInt(idxParam, 10))) {
+          const i = parseInt(idxParam, 10);
+          targetGroup = groups[i] || null;
+        }
+        if (!targetGroup && groups.length) targetGroup = groups[0];
+        if (targetGroup) {
+          // open and mark History active
+          targetGroup.classList.add('open');
+          const sublinks = targetGroup.querySelector('.project-sublinks');
+          if (sublinks) {
+            sublinks.style.display = 'flex';
+            // mark History as active
+            const historyLink = Array.from(sublinks.querySelectorAll('.side-sublink'))
+              .find(link => link.textContent.trim() === 'History');
+            if (historyLink) {
+              sublinks.querySelectorAll('.side-sublink').forEach(link => {
+                link.classList.remove('active');
+                link.classList.add('inactive');
+              });
+              historyLink.classList.remove('inactive');
+              historyLink.classList.add('active');
+            }
+          }
+        }
+      }
     });
-
-    historyLink.classList.remove('inactive');
-    historyLink.classList.add('active');
-  });
-</script>
+  </script>
 
 </body>
 </html>

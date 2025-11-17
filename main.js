@@ -176,13 +176,14 @@ function createProjectGroup(projectName, openByDefault, idx) {
   });
 
 const historyLink = document.createElement('a');
-historyLink.href = 'history.html';
+historyLink.href = `history.html?idx=${idx}`;
 historyLink.className = 'side-sublink inactive';
 historyLink.textContent = 'History';
 historyLink.addEventListener('click', (e) => {
   e.preventDefault();
   setActiveSublink(sublinks, historyLink);
-  window.location.href = 'history.html';
+  // Navigate to history page for this project index
+  window.location.href = `history.html?idx=${idx}`;
 });
 
   sublinks.appendChild(uploadLink);
