@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Account — Procedural Complexity Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <header class="signup-header">
+    <div class="signup-header-inner">
+      <h1 class="brand">Welcome To The<br />Procedure Complexity Calculator!</h1>
+    </div>
+  </header>
+
+  <main class="signup-main">
+    <section class="signup-card">
+      <h2 class="signup-title">Create Account</h2>
+      <p class="signup-sub">Already have account? <a href="logIn.html">Go to the Sign In page</a></p>
+
+      <form class="signup-form" action="#" method="post" novalidate>
+        <div class="row two-cols">
+          <label class="field">
+            <span class="label-text">First Name:</span>
+            <input type="text" name="firstName" placeholder="Enter your first name" />
+          </label>
+          <label class="field">
+            <span class="label-text">Last Name:</span>
+            <input type="text" name="lastName" placeholder="Enter your last name" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label-text">Email:</span>
+          <input type="email" name="email" placeholder="Enter your email address" />
+        </label>
+
+        <label class="field">
+          <span class="label-text">Passcode:</span>
+          <input type="password" name="passcode" placeholder="Enter your passcode" />
+        </label>
+
+        <label class="field">
+          <span class="label-text">Passcode Confirmation:</span>
+          <input type="password" name="passcodeConfirm" placeholder="Enter your passcode again" />
+        </label>
+
+        <div class="actions">
+            <button class="btn primary" type="submit">Join Now</button>
+        </div>
+      </form>
+    </section>
+  </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('.signup-form');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          window.location.href = 'logIn.html';
+        });
+      });
+    </script>
+</body>
+</html>

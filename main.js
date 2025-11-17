@@ -135,6 +135,12 @@ function createProjectGroup(projectName, openByDefault, idx) {
     }
   });
 
+  // Rename logic: open rename modal
+  renameItem.addEventListener('click', (e) => {
+    menu.style.display = 'none';
+    showRenameModal(projectName, idx);
+  });
+
   // Delete logic
   deleteItem.addEventListener('click', (e) => {
     menu.style.display = 'none';
@@ -160,12 +166,13 @@ function createProjectGroup(projectName, openByDefault, idx) {
   sublinks.style.flexDirection = 'column';
 
   const uploadLink = document.createElement('a');
-  uploadLink.href = '#';
+  uploadLink.href = 'upload.html';
   uploadLink.className = 'side-sublink active';
   uploadLink.textContent = 'Upload New File';
   uploadLink.addEventListener('click', (e) => {
     e.preventDefault();
     setActiveSublink(sublinks, uploadLink);
+    window.location.href = 'upload.html';
   });
 
 const historyLink = document.createElement('a');
@@ -265,6 +272,91 @@ function showDeleteModal(projectName, idx) {
   box.appendChild(btnRow);
   modal.appendChild(box);
   document.body.appendChild(modal);
+}
+
+// --- Rename Modal ---
+function showRenameModal(projectName, idx) {
+  let modal = document.getElementById('renameProjectModal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'renameProjectModal';
+  modal.style.position = 'fixed';
+  modal.style.top = '0';
+  modal.style.left = '0';
+  modal.style.width = '100vw';
+  modal.style.height = '100vh';
+  modal.style.background = 'rgba(0,0,0,0.08)';
+  modal.style.display = 'flex';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
+  modal.style.zIndex = '2000';
+
+  const box = document.createElement('div');
+  box.style.background = '#ececf6';
+  box.style.padding = '32px';
+  box.style.borderRadius = '10px';
+  box.style.boxShadow = '0 2px 16px rgba(0,0,0,0.10)';
+  box.style.minWidth = '420px';
+  box.style.textAlign = 'center';
+
+  const title = document.createElement('div');
+  title.style.fontSize = '1.25rem';
+  title.style.color = '#1f2a5a';
+  title.style.marginBottom = '12px';
+  title.textContent = `Rename project '${projectName}'`;
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = projectName;
+  input.style.width = '100%';
+  input.style.padding = '10px 12px';
+  input.style.fontSize = '16px';
+  input.style.marginBottom = '18px';
+  input.style.borderRadius = '6px';
+  input.style.border = '1px solid #cfcfe6';
+
+  const btnRow = document.createElement('div');
+  btnRow.style.display = 'flex';
+  btnRow.style.justifyContent = 'center';
+  btnRow.style.gap = '20px';
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'Cancel';
+  cancelBtn.style.background = '#fff';
+  cancelBtn.style.border = '1.5px solid #D1D5DB';
+  cancelBtn.style.borderRadius = '6px';
+  cancelBtn.style.padding = '8px 20px';
+  cancelBtn.style.fontSize = '16px';
+  cancelBtn.style.cursor = 'pointer';
+  cancelBtn.addEventListener('click', () => modal.remove());
+
+  const confirmBtn = document.createElement('button');
+  confirmBtn.textContent = 'Confirm';
+  confirmBtn.style.background = '#2CA0A0';
+  confirmBtn.style.color = '#fff';
+  confirmBtn.style.border = 'none';
+  confirmBtn.style.borderRadius = '6px';
+  confirmBtn.style.padding = '8px 20px';
+  confirmBtn.style.fontSize = '16px';
+  confirmBtn.style.cursor = 'pointer';
+  confirmBtn.addEventListener('click', () => {
+    const newName = input.value.trim();
+    if (!newName) return;
+    let projects = getProjectsFromStorage();
+    projects[idx] = newName;
+    saveProjectsToStorage(projects);
+    renderProjects();
+    modal.remove();
+  });
+
+  btnRow.appendChild(cancelBtn);
+  btnRow.appendChild(confirmBtn);
+  box.appendChild(title);
+  box.appendChild(input);
+  box.appendChild(btnRow);
+  modal.appendChild(box);
+  document.body.appendChild(modal);
+  input.focus();
 }
 
   if (openByDefault) {

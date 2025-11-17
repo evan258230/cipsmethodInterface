@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #2e3646;
+}
+
+.signup-header {
+  width: 100%;
+  padding: 44px 0 64px 0;
+  background: linear-gradient(180deg, #1fa0a0 0%, #1a9b9b 20%, #0d6b6b 100%);
+  box-shadow: 0 2px 12px rgba(15,23,42,0.06);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.signup-header-inner {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 24px 0 48px;
+}
+
+.brand {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  color: #ffffff;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: left;
+}
+
+.signup-main {
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px 96px;
+  background: #fff;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 640px;
+  background: transparent;
+  border-radius: 0;
+  padding: 12px 0;
+  box-shadow: none;
+  border: none;
+}
+
+.signup-title {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  color: #354155;
+  font-size: 28px;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.signup-sub {
+  color: #93a0b4;
+  font-size: 14px;
+  margin: 0 0 26px;
+  text-align: center;
+}
+
+.signup-sub a {
+  color: #9aa6bf;
+  text-decoration: none;
+}
+
+.signup-form {
+  width: 100%;
+}
+
+.field {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.field .label-text {
+  display: block;
+  font-size: 14px;
+  color: #55607a;
+  margin-bottom: 8px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #dfe4ec;
+  background: #fbfcfe;
+  font-size: 15px;
+  color: #2e3646;
+  outline: none;
+}
+
+.field input::placeholder {
+  color: #bfc9d6;
+}
+
+.row.two-cols {
+  display: flex;
+  gap: 14px;
+}
+
+.row.two-cols .field {
+  flex: 1;
+  margin-bottom: 18px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #2f3a46;
+  color: #fff;
+  border: none;
+}
+
+@media (max-width: 640px) {
+  .brand {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .signup-header {
+    align-items: center;
+    padding: 28px 0 40px;
+  }
+
+  .signup-card {
+    padding: 20px;
+  }
+
+  .row.two-cols {
+    flex-direction: column;
+  }
+}
