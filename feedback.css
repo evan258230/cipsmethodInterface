@@ -108,7 +108,6 @@ html, body {
   color: #2B3674;
 }
 
-/* Only highlight the project that is currently open */
 .project-group.current .project-container {
   background: #E2E4F6;
 }
@@ -116,7 +115,6 @@ html, body {
 .side-sublink {
   width: 212px;
   height: 38px;
-  /* inactive sublinks should match project surface */
   background: #FFFFFF;
   font-family: 'DM Sans', sans-serif;
   color: #2B3674;
@@ -134,7 +132,6 @@ html, body {
   margin-right: 10px;
 }
 
-/* Active sublink styling: only the selected tab should be gray */
 .side-sublink.active {
   background-color: #E2E4F6;
 }

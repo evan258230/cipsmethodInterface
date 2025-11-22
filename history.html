@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Procedural Complexity Calculator Tool — History</title>
 
-  <!-- Shared styles for header + sidebar -->
   <link rel="stylesheet" href="upload.css" />
-  <!-- Page-specific styles -->
   <link rel="stylesheet" href="history.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
@@ -15,7 +13,7 @@
 
 <body>
 
-  <!-- Header (copied from upload.html) -->
+  <!-- Header  -->
   <header class="header">
     <div class="header-title">Procedural Complexity Calculator Tool</div>
     <div class="user-profile">
@@ -23,16 +21,16 @@
       <div class="user-name">UserProfile</div>
     </div>
   </header>
-  <!-- Page layout: sidebar + main wrapper -->
+
   <div class="content-wrapper">
-    <!-- Sidebar (copied from upload.html) -->
+    <!-- Sidebar  -->
     <aside class="sidebar">
       <button id="newProjectBtn" class="new-project-btn">
         <span class="plus-icon">+</span> New Project
       </button>
 
       <div id="projectList" class="projects-list">
-        <!-- main.js will render your projects/groups here to keep parity with upload.html -->
+    
       </div>
 
       <div class="sidebar-bottom">
@@ -41,7 +39,7 @@
       </div>
     </aside>
 
-    <!-- Main content (different from upload.html) -->
+    <!-- Main content -->
     <main class="main-content">
       <div class="history-container">
         <h1 class="history-title">History</h1>
@@ -58,14 +56,14 @@
           </tr>
         </thead>
         <tbody id="historyTbody">
-          <!-- rows will be rendered from localStorage per-project history -->
+       
         </tbody>
       </table>
         </section>
       </div>
     </main>
 
-  </div> <!-- .content-wrapper -->
+  </div> 
 
   <script src="main.js" defer></script>
   <script>

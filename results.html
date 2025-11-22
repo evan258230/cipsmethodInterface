@@ -10,7 +10,7 @@
 
 <body>
 
-  <!-- Header (copied from upload.html) -->
+  <!-- Header -->
   <header class="header">
     <div class="header-title">Procedural Complexity Calculator Tool</div>
     <div class="user-profile">
@@ -19,14 +19,13 @@
     </div>
   </header>
 
-  <!-- Sidebar (copied from upload.html) -->
+  <!-- Sidebar -->
   <aside class="sidebar">
     <button id="newProjectBtn" class="new-project-btn">
       <span class="plus-icon">+</span> New Project
     </button>
 
     <div id="projectList" class="projects-list">
-      <!-- main.js will render your projects/groups here to keep parity with upload.html -->
     </div>
 
     <div class="sidebar-bottom">
@@ -126,5 +125,43 @@
   </main>
 
   <script src="main.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const idxParam = params.get('idx');
+      const projectList = document.querySelector('#projectList');
+      if (!projectList) return;
+      const groups = Array.from(projectList.querySelectorAll('.project-group'));
+      if (!groups.length) return;
+      let target = null;
+      if (!Number.isNaN(parseInt(idxParam, 10))) {
+        const i = parseInt(idxParam, 10);
+        target = groups[i] || null;
+      }
+      if (!target) target = groups[0];
+      if (target) {
+        if (typeof closeAllGroups === 'function') closeAllGroups();
+        groups.forEach(g => g.classList.remove('current'));
+        target.classList.add('current');
+        target.classList.add('open');
+        const sublinks = target.querySelector('.project-sublinks');
+        if (sublinks) {
+          sublinks.style.display = 'flex';
+          // mark Upload New File as active
+          const uploadLink = Array.from(sublinks.querySelectorAll('.side-sublink'))
+            .find(link => link.textContent.trim().toLowerCase().includes('upload'));
+          if (uploadLink) {
+            sublinks.querySelectorAll('.side-sublink').forEach(link => {
+              link.classList.remove('active');
+              link.classList.add('inactive');
+            });
+            uploadLink.classList.remove('inactive');
+            uploadLink.classList.add('active');
+          }
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  </script>
 </body>
 </html>

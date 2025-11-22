@@ -1,6 +1,5 @@
 .main-content {
   padding: 28px 32px 48px;
-  /* keep inner spacing; outer background provided by .content-wrapper */
 }
 
 .history-title {
@@ -26,10 +25,9 @@
   padding: 10px 0;
   box-shadow: 0 1px 0 rgba(16, 24, 40, 0.02);
   max-width: 980px;
-  margin: 0 auto; /* center horizontally */
+  margin: 0 auto;
 }
 
-/* center the content area vertically a bit and contain the card */
 .history-title {
   margin-top: 18px;
 }
@@ -112,7 +110,7 @@
   transform: translateY(1px);
 }
 
-/* make last column compact like the Figma pill button spacing */
+
 .history-table td:last-child,
 .history-table th:last-child {
   width: 160px;

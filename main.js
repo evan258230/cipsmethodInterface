@@ -15,6 +15,15 @@ function getProjectsFromStorage() {
   return [];
 }
 
+// Mark bottom feedback link active when on feedback page (do not open/select projects)
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.feedback-link').forEach(el => el.classList.remove('active'));
+  const isFeedbackPage = window.location.pathname.endsWith('feedback.html') || window.location.href.includes('feedback.html');
+  if (!isFeedbackPage) return;
+  const fb = document.querySelector('.feedback-link');
+  if (fb) fb.classList.add('active');
+});
+
 function saveProjectsToStorage(projects) {
   localStorage.setItem('cipsmethod-projects', JSON.stringify(projects));
 }

@@ -90,6 +90,17 @@ body {
   padding: 0 25px;
 }
 
+.project-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: #2B3674;
+}
+
+.project-chevron {
+  font-size: 18px;
+  color: #2B3674;
+}
+
 /* Highlight only the currently open project */
 .project-group.current .project-container {
   background: #E2E4F6;
@@ -100,6 +111,8 @@ body {
   height: 38px;
   /* inactive sublinks should be white like the project area */
   background: #FFFFFF;
+  font-family: 'DM Sans', sans-serif;
+  color: #2B3674;
   display: flex;
   align-items: center;
   padding-left: 31px;
@@ -107,7 +120,7 @@ body {
   color: #2B3674;
 }
 
-/* Active sublink: only the selected tab is gray */
+
 .side-sublink.active {
   background-color: #E2E4F6;
 }
@@ -117,6 +130,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+
+.side-sublink::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2CA0A0;
+  margin-right: 10px;
+}
+
+.side-sublink.inactive::before {
+  background: #C3C6E0;
 }
 
 .feedback-link,
@@ -131,10 +158,7 @@ body {
   text-decoration: none;
 }
 
-.feedback-link {
-  background: #E2E4F6;
-  font-weight: 600;
-}
+
 
 /* Main Content */
 .main-content {
@@ -230,12 +254,12 @@ body {
 .yellow { background: #F8E765; }
 .red { background: #EB5E5E; }
 
-/* --- Filter Section --- */
+
 .filter-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #F5F6FA; /* darker gray tone */
+  background: #F5F6FA;
   border: 1.5px solid #E2E4F0;
   border-radius: 16px;
   padding: 16px 22px;
@@ -310,7 +334,7 @@ body {
   border-color: #C9CBD7;
 }
 
-/* Table Section */
+
 .table-section {
   width: 100%;
 }
