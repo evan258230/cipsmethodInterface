@@ -418,6 +418,28 @@ body{
 .feedback-link { cursor: pointer; }
 .feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
 
+/* Empty state message when there are no projects */
+.no-projects{
+  padding: 18px 12px;
+  color: #6b7280;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Main empty state shown in the center of the page when there are no projects */
+.empty-main-message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 72px);
+  padding: 24px;
+  color: #22303f;
+  font-weight: 700;
+  text-align: center;
+  font-size: 28px;
+}
+
 
 .main{
   display:flex;

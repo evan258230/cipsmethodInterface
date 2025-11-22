@@ -15,6 +15,58 @@ function getProjectsFromStorage() {
   return [];
 }
 
+// Continue as guest: clear any existing projects/histories so the UI shows an empty state
+function continueAsGuest() {
+  try {
+    // Backup existing projects/histories so they can be restored when the user logs in normally
+    const existingProjects = getProjectsFromStorage();
+    const existingHistories = getHistoriesFromStorage();
+    try {
+      if (existingProjects && existingProjects.length) {
+        localStorage.setItem('cipsmethod-projects-backup', JSON.stringify(existingProjects));
+      }
+      if (existingHistories && existingHistories.length) {
+        localStorage.setItem('cipsmethod-histories-backup', JSON.stringify(existingHistories));
+      }
+      // mark that guest session is active
+      localStorage.setItem('cipsmethod-guest-active', '1');
+    } catch (e) {
+      // ignore backup errors
+    }
+    // Clear visible projects for guest session
+    localStorage.setItem('cipsmethod-projects', JSON.stringify([]));
+    localStorage.setItem('cipsmethod-histories', JSON.stringify([]));
+  } catch (e) {
+    // ignore storage errors
+  }
+  window.location.href = 'upload.html';
+}
+
+// Normal login path: restore any backed-up projects if a guest session was active
+function loginNormal() {
+  try {
+    const guestFlag = localStorage.getItem('cipsmethod-guest-active');
+    const backup = localStorage.getItem('cipsmethod-projects-backup');
+    const histBackup = localStorage.getItem('cipsmethod-histories-backup');
+    if (guestFlag && backup) {
+      try {
+        localStorage.setItem('cipsmethod-projects', backup);
+        if (histBackup) localStorage.setItem('cipsmethod-histories', histBackup);
+      } catch (e) {
+        // ignore restore errors
+      }
+    }
+    // cleanup guest markers/backups
+    try {
+      localStorage.removeItem('cipsmethod-guest-active');
+      localStorage.removeItem('cipsmethod-projects-backup');
+      localStorage.removeItem('cipsmethod-histories-backup');
+    } catch (e) {}
+  } catch (e) {}
+  // navigate to the upload page (preserve normal flow)
+  window.location.href = 'upload.html';
+}
+
 // Mark bottom feedback link active when on feedback page (do not open/select projects)
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.feedback-link').forEach(el => el.classList.remove('active'));
@@ -63,10 +115,37 @@ function renderProjects() {
   if (!projectList) return;
   projectList.innerHTML = '';
   const projects = getProjectsFromStorage();
+  if (!projects || projects.length === 0) {
+    // keep the sidebar clean when there are no projects
+    if (typeof showEmptyMainIfNoProjects === 'function') showEmptyMainIfNoProjects();
+    return;
+  }
   projects.forEach((name, idx) => {
     createProjectGroup(name, idx === 0, idx);
   });
 }
+
+// If there are no projects, replace main content with an empty-state message
+function showEmptyMainIfNoProjects() {
+  try {
+    const projects = getProjectsFromStorage();
+    if (projects && projects.length > 0) return;
+    const main = document.querySelector('.main-content');
+    if (!main) return;
+    // Clear existing upload UI
+    main.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'empty-main-message';
+    wrap.textContent = 'Create a Project to Get Started!';
+    main.appendChild(wrap);
+  } catch (e) {
+    // ignore
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  showEmptyMainIfNoProjects();
+});
 
 function addNewProject() {
   let projects = getProjectsFromStorage();
@@ -84,6 +163,11 @@ function addNewProject() {
     openGroup(groups[groups.length - 1]);
     groups[groups.length - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
+  // After creating a project, navigate to the upload page for the new project
+  try {
+    const newIdx = projects.length - 1;
+    window.location.href = `upload.html?idx=${newIdx}`;
+  } catch (e) {}
 }
 
 if (projectList && newProjectBtn) {
@@ -316,6 +400,8 @@ function showDeleteModal(projectName, idx) {
       saveHistoriesToStorage(histories);
     }
     renderProjects();
+    // If deletion removed the last project, show the empty main state
+    if (typeof showEmptyMainIfNoProjects === 'function') showEmptyMainIfNoProjects();
     modal.remove();
   });
 
