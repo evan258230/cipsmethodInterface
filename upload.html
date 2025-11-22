@@ -122,7 +122,11 @@
     }
     if (!target) target = groups[0];
     if (target) {
-      // open the group
+      // close other groups then open this one
+      if (typeof closeAllGroups === 'function') closeAllGroups();
+      // remove any existing 'current' markers then mark this as current
+      groups.forEach(g => g.classList.remove('current'));
+      target.classList.add('current');
       target.classList.add('open');
       const sublinks = target.querySelector('.project-sublinks');
       if (sublinks) {

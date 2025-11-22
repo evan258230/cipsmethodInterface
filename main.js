@@ -19,6 +19,37 @@ function saveProjectsToStorage(projects) {
   localStorage.setItem('cipsmethod-projects', JSON.stringify(projects));
 }
 
+// --- Project histories persistence (parallel array aligned by project index) ---
+function getHistoriesFromStorage() {
+  try {
+    const data = localStorage.getItem('cipsmethod-histories');
+    if (data) return JSON.parse(data);
+  } catch (e) {}
+  return [];
+}
+
+function saveHistoriesToStorage(histories) {
+  localStorage.setItem('cipsmethod-histories', JSON.stringify(histories));
+}
+
+function ensureHistoriesAligned(projects) {
+  const histories = getHistoriesFromStorage();
+  while (histories.length < projects.length) histories.push([]);
+  if (histories.length > projects.length) histories.length = projects.length;
+  saveHistoriesToStorage(histories);
+  return histories;
+}
+
+function addHistoryEntryForProject(idx, entry) {
+  const projects = getProjectsFromStorage();
+  const histories = getHistoriesFromStorage();
+  // align
+  while (histories.length < projects.length) histories.push([]);
+  if (idx < 0 || idx >= histories.length) return;
+  histories[idx].unshift(entry); // newest first
+  saveHistoriesToStorage(histories);
+}
+
 function renderProjects() {
   if (!projectList) return;
   projectList.innerHTML = '';
@@ -34,6 +65,8 @@ function addNewProject() {
   const newName = `Project Name ${nextIndex}`;
   projects.push(newName);
   saveProjectsToStorage(projects);
+  // Ensure histories array stays aligned with projects
+  ensureHistoriesAligned(projects);
   renderProjects();
   // Open the new group
   const groups = $$('.project-group', projectList);
@@ -45,6 +78,8 @@ function addNewProject() {
 }
 
 if (projectList && newProjectBtn) {
+  // make sure histories are aligned before rendering
+  ensureHistoriesAligned(getProjectsFromStorage());
   renderProjects();
   newProjectBtn.addEventListener('click', addNewProject);
 }
@@ -261,10 +296,16 @@ function showDeleteModal(projectName, idx) {
   deleteBtn.style.fontSize = '16px';
   deleteBtn.style.cursor = 'pointer';
   deleteBtn.addEventListener('click', () => {
-    // Remove project from storage
+    // Remove project from storage AND its history (keep arrays aligned)
     let projects = getProjectsFromStorage();
     projects.splice(idx, 1);
     saveProjectsToStorage(projects);
+    // remove corresponding history entry
+    const histories = getHistoriesFromStorage();
+    if (idx >= 0 && idx < histories.length) {
+      histories.splice(idx, 1);
+      saveHistoriesToStorage(histories);
+    }
     renderProjects();
     modal.remove();
   });
@@ -474,7 +515,23 @@ if (hiddenFileInput) {
 if (fileUploadBtn) {
   fileUploadBtn.addEventListener('click', () => {
     if (!fileUploadBtn.disabled) {
-      window.location.href = 'results.html';
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const idx = parseInt(params.get('idx'), 10);
+        const fileName = (hiddenFileInput && hiddenFileInput.files && hiddenFileInput.files[0]) ? hiddenFileInput.files[0].name : (fileInputDisplay ? fileInputDisplay.value : 'Uploaded File');
+        if (!Number.isNaN(idx)) {
+          addHistoryEntryForProject(idx, {
+            date: new Date().toISOString(),
+            name: fileName,
+            score: 2
+          });
+        }
+      } catch (e) {
+        // ignore storage errors
+      }
+      // navigate to results (preserve idx if present)
+      const qs = window.location.search || '';
+      window.location.href = `results.html${qs}`;
     }
   });
 }
@@ -574,7 +631,20 @@ if (manualText && textUploadBtn) {
 
   textUploadBtn.addEventListener('click', () => {
     if (!textUploadBtn.disabled) {
-      window.location.href = 'results.html';
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const idx = parseInt(params.get('idx'), 10);
+        const fileName = 'Manual Submission';
+        if (!Number.isNaN(idx)) {
+          addHistoryEntryForProject(idx, {
+            date: new Date().toISOString(),
+            name: fileName,
+            score: 2
+          });
+        }
+      } catch (e) {}
+      const qs = window.location.search || '';
+      window.location.href = `results.html${qs}`;
     }
   });
 }

@@ -54,7 +54,7 @@ html, body {
   position: absolute;
   top: 70px;
   left: 0;
-  bottom: 0; /* stretch to bottom of viewport */
+  bottom: 0; 
   width: 212px;
   background: #FEFEFE;
   border-right: 0.5px solid #EDEDED;
@@ -104,7 +104,7 @@ html, body {
 .project-container {
   width: 212px;
   height: 48px;
-  background: #E2E4F6;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -119,6 +119,10 @@ html, body {
   color: #2B3674;
 }
 
+.project-group.current .project-container {
+  background: #E2E4F6;
+}
+
 .project-chevron {
   font-size: 18px;
   color: #2B3674;
@@ -127,7 +131,7 @@ html, body {
 .side-sublink {
   width: 212px;
   height: 38px;
-  background: #F3F4FD;
+  background: #FFFFFF;
   font-family: 'DM Sans', sans-serif;
   color: #2B3674;
   display: flex;

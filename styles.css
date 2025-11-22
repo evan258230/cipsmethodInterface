@@ -384,9 +384,13 @@ body{
   text-decoration:none;
   color:#5a6477;
   font-weight:600;
+  /* make inactive sublinks white to match project background */
+  background: #FFFFFF;
 }
-.side-sublink.current{
-  background:#e9eef9;
+.side-sublink.current,
+.side-sublink.active{
+  /* active/selected sublink should be gray */
+  background: #E2E4F6;
   color:#0f172a;
 }
 

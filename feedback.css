@@ -90,7 +90,7 @@ html, body {
 .project-container {
   width: 212px;
   height: 48px;
-  background: #E2E4F6;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -108,10 +108,16 @@ html, body {
   color: #2B3674;
 }
 
+/* Only highlight the project that is currently open */
+.project-group.current .project-container {
+  background: #E2E4F6;
+}
+
 .side-sublink {
   width: 212px;
   height: 38px;
-  background: #F3F4FD;
+  /* inactive sublinks should match project surface */
+  background: #FFFFFF;
   font-family: 'DM Sans', sans-serif;
   color: #2B3674;
   display: flex;
@@ -126,6 +132,11 @@ html, body {
   border-radius: 50%;
   background: #C3C6E0;
   margin-right: 10px;
+}
+
+/* Active sublink styling: only the selected tab should be gray */
+.side-sublink.active {
+  background-color: #E2E4F6;
 }
 
 .sidebar-bottom {

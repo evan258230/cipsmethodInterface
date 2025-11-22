@@ -83,22 +83,33 @@ body {
 .project-container {
   width: 212px;
   height: 48px;
-  background: #E2E4F6;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 25px;
 }
 
+/* Highlight only the currently open project */
+.project-group.current .project-container {
+  background: #E2E4F6;
+}
+
 .side-sublink {
   width: 212px;
   height: 38px;
-  background: #F3F4FD;
+  /* inactive sublinks should be white like the project area */
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   padding-left: 31px;
   font-size: 15px;
   color: #2B3674;
+}
+
+/* Active sublink: only the selected tab is gray */
+.side-sublink.active {
+  background-color: #E2E4F6;
 }
 
 .sidebar-bottom {

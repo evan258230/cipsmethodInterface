@@ -57,37 +57,8 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><span class="date">09/29/2025</span></td>
-            <td><a class="file-link" href="#">TaskA-v1.pdf</a></td>
-            <td><span class="score">2</span></td>
-            <td><a class="download-btn" href="#" aria-label="Download TaskA-v1.pdf">Download ⬇</a></td>
-          </tr>
-          <tr>
-            <td><span class="date">02/26/2025</span></td>
-            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-            <td><span class="score">3</span></td>
-            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
-          </tr>
-          <tr>
-            <td><span class="date">02/26/2025</span></td>
-            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-            <td><span class="score">4</span></td>
-            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
-          </tr>
-          <tr>
-            <td><span class="date">02/26/2025</span></td>
-            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-            <td><span class="score">4</span></td>
-            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
-          </tr>
-          <tr>
-            <td><span class="date">02/08/2025</span></td>
-            <td><a class="file-link" href="#">Steps_File_4.pdf</a></td>
-            <td><span class="score">8</span></td>
-            <td><a class="download-btn" href="#" aria-label="Download Steps_File_4.pdf">Download ⬇</a></td>
-          </tr>
+        <tbody id="historyTbody">
+          <!-- rows will be rendered from localStorage per-project history -->
         </tbody>
       </table>
         </section>
@@ -135,7 +106,11 @@
         }
         if (!targetGroup && groups.length) targetGroup = groups[0];
         if (targetGroup) {
-          // open and mark History active
+          // close other groups then open and mark History active/current
+          if (typeof closeAllGroups === 'function') closeAllGroups();
+          // remove current from all groups and mark the target as current
+          groups.forEach(g => g.classList.remove('current'));
+          targetGroup.classList.add('current');
           targetGroup.classList.add('open');
           const sublinks = targetGroup.querySelector('.project-sublinks');
           if (sublinks) {
@@ -154,6 +129,71 @@
           }
         }
       }
+
+      // Render history rows for the selected project
+      (function renderHistoryRows() {
+        const params = new URLSearchParams(window.location.search);
+        const idx = parseInt(params.get('idx'), 10);
+        const tbody = document.getElementById('historyTbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        try {
+          const raw = localStorage.getItem('cipsmethod-histories');
+          const histories = raw ? JSON.parse(raw) : [];
+          const entries = (!Number.isNaN(idx) && histories[idx]) ? histories[idx] : [];
+          if (!entries || entries.length === 0) {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = 4;
+            td.style.textAlign = 'center';
+            td.style.padding = '28px';
+            td.textContent = 'No files uploaded for this project yet.';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+            return;
+          }
+          entries.forEach(entry => {
+            const tr = document.createElement('tr');
+            const dateTd = document.createElement('td');
+            const nameTd = document.createElement('td');
+            const scoreTd = document.createElement('td');
+            const actionTd = document.createElement('td');
+
+            const dateSpan = document.createElement('span');
+            dateSpan.className = 'date';
+            const dt = entry.date ? new Date(entry.date) : new Date();
+            dateSpan.textContent = dt.toLocaleDateString();
+
+            const nameLink = document.createElement('a');
+            nameLink.className = 'file-link';
+            nameLink.href = '#';
+            nameLink.textContent = entry.name || 'Uploaded File';
+
+            const scoreSpan = document.createElement('span');
+            scoreSpan.className = 'score';
+            scoreSpan.textContent = (typeof entry.score !== 'undefined') ? entry.score : 2;
+
+            const downloadBtn = document.createElement('a');
+            downloadBtn.className = 'download-btn';
+            downloadBtn.href = '#';
+            downloadBtn.setAttribute('aria-label', `Download ${entry.name || 'file'}`);
+            downloadBtn.textContent = 'Download ⬇';
+
+            dateTd.appendChild(dateSpan);
+            nameTd.appendChild(nameLink);
+            scoreTd.appendChild(scoreSpan);
+            actionTd.appendChild(downloadBtn);
+
+            tr.appendChild(dateTd);
+            tr.appendChild(nameTd);
+            tr.appendChild(scoreTd);
+            tr.appendChild(actionTd);
+            tbody.appendChild(tr);
+          });
+        } catch (e) {
+          // fallback: no rows
+        }
+      })();
     });
   </script>
 
