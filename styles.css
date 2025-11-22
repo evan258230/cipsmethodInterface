@@ -384,12 +384,12 @@ body{
   text-decoration:none;
   color:#5a6477;
   font-weight:600;
-  /* make inactive sublinks white to match project background */
+
   background: #FFFFFF;
 }
 .side-sublink.current,
 .side-sublink.active{
-  /* active/selected sublink should be gray */
+
   background: #E2E4F6;
   color:#0f172a;
 }
@@ -402,6 +402,21 @@ body{
   padding: 12px 4px 8px 4px;
 }
 .logout .external{ font-size:12px; opacity:.7 }
+.logout:hover{ background:#F3F4FD; border-radius:8px }
+
+.logout-link{ cursor: pointer; }
+.logout-link:hover{ background: #F3F4FD; border-radius: 8px; }
+
+
+.project-container { cursor: pointer; }
+.project-container:hover { background: #F3F4FD; transition: background 120ms ease; }
+
+
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; transition: background 120ms ease; }
+
+.feedback-link { cursor: pointer; }
+.feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
 
 
 .main{

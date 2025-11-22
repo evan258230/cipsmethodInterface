@@ -95,6 +95,11 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 0 25px;
+  cursor: pointer;
+}
+
+.project-container:hover {
+  background: #F3F4FD;
 }
 
 .project-name {
@@ -122,6 +127,18 @@ html, body {
   align-items: center;
   padding-left: 31px;
 }
+
+.side-sublink:hover {
+  background: #F3F4FD;
+}
+
+/* Ensure feedback, logout and sublink hover/cursor are present on this page */
+.feedback-link { cursor: pointer; }
+.feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
+.logout-link { cursor: pointer; }
+.logout-link:hover { background: #F3F4FD; border-radius: 8px; }
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; transition: background 120ms ease; }
 
 .side-sublink::before {
   content: "";

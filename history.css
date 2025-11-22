@@ -40,6 +40,22 @@
   padding: 24px 0 60px 0;
 }
 
+
+.project-container { cursor: pointer; }
+.project-container:hover { background: #F3F4FD; transition: background 120ms ease; }
+
+
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; transition: background 120ms ease; }
+
+
+.feedback-link { cursor: pointer; }
+.feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
+.logout-link { cursor: pointer; }
+.logout-link:hover { background: #F3F4FD; border-radius: 8px; }
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; }
+
 .history-table {
   width: 100%;
   border-collapse: collapse;

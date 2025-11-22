@@ -152,3 +152,10 @@ html, body {
     flex-direction: column;
   }
 }
+
+.feedback-link { cursor: pointer; }
+.feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
+.logout-link { cursor: pointer; }
+.logout-link:hover { background: #F3F4FD; border-radius: 8px; }
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; transition: background 120ms ease; }

@@ -88,6 +88,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 25px;
+  cursor: pointer;
+}
+
+.project-container:hover {
+  background: #F3F4FD;
 }
 
 .project-name {
@@ -101,7 +106,7 @@ body {
   color: #2B3674;
 }
 
-/* Highlight only the currently open project */
+
 .project-group.current .project-container {
   background: #E2E4F6;
 }
@@ -109,7 +114,7 @@ body {
 .side-sublink {
   width: 212px;
   height: 38px;
-  /* inactive sublinks should be white like the project area */
+
   background: #FFFFFF;
   font-family: 'DM Sans', sans-serif;
   color: #2B3674;
@@ -119,6 +124,16 @@ body {
   font-size: 15px;
   color: #2B3674;
 }
+
+.side-sublink:hover { background: #F3F4FD; }
+
+
+.feedback-link { cursor: pointer; }
+.feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
+.logout-link { cursor: pointer; }
+.logout-link:hover { background: #F3F4FD; border-radius: 8px; }
+.side-sublink { cursor: pointer; }
+.side-sublink:hover { background: #F3F4FD; transition: background 120ms ease; }
 
 
 .side-sublink.active {
