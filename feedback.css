@@ -132,7 +132,6 @@ html, body {
   background: #F3F4FD;
 }
 
-/* Ensure feedback, logout and sublink hover/cursor are present on this page */
 .feedback-link { cursor: pointer; }
 .feedback-link:hover { background: #F3F4FD; border-radius: 8px; }
 .logout-link { cursor: pointer; }
@@ -231,7 +230,6 @@ html, body {
   color: #FACC15;
 }
 
-/* --- Form --- */
 .feedback-form {
   display: flex;
   flex-direction: column;
@@ -261,7 +259,6 @@ html, body {
   resize: none;
 }
 
-/* --- Buttons --- */
 .feedback-actions {
   display: flex;
   justify-content: flex-end;
@@ -286,4 +283,14 @@ html, body {
   padding: 10px 28px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.submit-btn.enabled {
+  background: #2CA0A0;
+  box-shadow: 0 6px 18px rgba(44,160,160,0.18);
+}
+
+.submit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.95;
 }

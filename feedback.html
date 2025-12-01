@@ -57,7 +57,7 @@
 
         <div class="feedback-actions">
           <button class="cancel-btn" type="button">Cancel</button>
-          <button class="submit-btn" type="submit">Submit</button>
+          <button class="submit-btn" type="submit" disabled>Submit</button>
         </div>
       </form>
     </div>
@@ -67,7 +67,6 @@
 
   <script src="main.js" defer></script>
   <script>
-    // Star rating interaction
     const stars = document.querySelectorAll('.star');
     stars.forEach((star, index) => {
       star.addEventListener('click', () => {
@@ -76,6 +75,59 @@
         });
       });
     });
+
+
+    const feedbackTextarea = document.querySelector('#feedback');
+    const submitBtn = document.querySelector('.submit-btn');
+    const feedbackForm = document.querySelector('.feedback-form');
+
+    function updateSubmitState() {
+      const hasText = feedbackTextarea && feedbackTextarea.value.trim().length > 0;
+      if (submitBtn) {
+        submitBtn.disabled = !hasText;
+        submitBtn.classList.toggle('enabled', hasText);
+      }
+    }
+
+    if (feedbackTextarea) {
+
+      updateSubmitState();
+      feedbackTextarea.addEventListener('input', updateSubmitState);
+    }
+
+
+    if (feedbackForm) {
+      feedbackForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (submitBtn && submitBtn.disabled) return; 
+
+        // count active stars
+        const activeStars = Array.from(document.querySelectorAll('.star.active')).length;
+        const rating = activeStars || 0;
+        const feedbackText = feedbackTextarea ? feedbackTextarea.value.trim() : '';
+        const userEmail = document.querySelector('#email') ? document.querySelector('#email').value.trim() : '';
+
+        const to = 'yhpark@tamu.edu';
+        const subject = `Feedback on CIPS Method Web Interface - ${rating}/5`;
+        let body = '';
+        if (userEmail) body += `From: ${userEmail}\n\n`;
+        body += feedbackText || '(No additional comments)';
+
+        const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        const popup = window.open(mailto, 'sendFeedback', 'width=700,height=600,menubar=no,toolbar=no,location=no,status=no');
+        if (popup) {
+    
+          setTimeout(() => {
+            try { popup.close(); } catch (err) {  }
+            try { window.focus(); } catch (err) {  }
+          }, 800);
+        } else {
+
+          window.location.href = mailto;
+        }
+      });
+    }
   </script>
 </body>
 </html>
