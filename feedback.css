@@ -230,6 +230,10 @@ html, body {
   color: #FACC15;
 }
 
+.star.hover {
+  color: #FACC15;
+}
+
 .feedback-form {
   display: flex;
   flex-direction: column;

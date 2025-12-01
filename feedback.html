@@ -74,7 +74,24 @@
           s.classList.toggle('active', i <= index);
         });
       });
+      star.addEventListener('mouseenter', () => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('hover', i <= index);
+        });
+      });
+      // remove hover when leaving an individual star
+      star.addEventListener('mouseleave', () => {
+        stars.forEach((s) => s.classList.remove('hover'));
+      });
     });
+
+  
+    const ratingContainer = document.querySelector('.rating');
+    if (ratingContainer) {
+      ratingContainer.addEventListener('mouseleave', () => {
+        stars.forEach((s) => s.classList.remove('hover'));
+      });
+    }
 
 
     const feedbackTextarea = document.querySelector('#feedback');
